@@ -19,4 +19,4 @@ To run the real-time LabVIEW code, open the LabVIEW project at `\LabviewVIs\Proj
 
 ### Section 2: Generating figures
 
-The MATLAB script `analysis_code_figure_1_2_4_S1_S3.m` is used to generate figures 1, 2, 4, S1, and S3. The script `analysis_code_figure_3_S2.m` generates figures 3 and S2 of the manuscript.
+The MATLAB script `analysis_code_figure_1_2_4_S1_S2_S3_S4_S7_S8.m` is used to generate figures 1, 2, 4, S1, S2, S3, S4, S7, and S8. The script `analysis_code_figure_3_S6.m` generates figures 3 and S6 of the manuscript.

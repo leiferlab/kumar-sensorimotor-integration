@@ -1,79 +1,19 @@
-%%%% This is the most recent working version of the code
-%%%% Mech: 20200902; AVA: 20200831; AVE: 20211118, AIB: 20201110, RIM: 20200904, AIZ: 20210114
-
-addpath(genpath('/projects/LEIFER/Sandeep/github/ProjectAPI'));
-
 close all
 clear
 clc
 
-%%%% for figure 1 
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20200902_RunRailsTriggeredByTurning_Sandeep_AML67_10ulRet');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20210614_RunRailsTriggeredByTurning_Sandeep_AML67_10ulRet_red');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20210624_RunRailsTriggeredByTurning_Sandeep_AML67_10ulRet_red');
-
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20200902_RunFullWormRails_Sandeep_AML67_10ulret');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20210614_RunFullWormRails_Sandeep_AML67_10ulRet_red');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20210624_RunFullWormRails_Sandeep_AML67_10ulRet_red');
-
-%%%% for figure 2
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20200831_RunRailsTriggeredByTurning_Sandeep_AML17_AVA_10ulRet');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20200831_RunFullWormRails_Sandeep_AML17_AVA_10ulRet');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20211118_RunRailsTriggeredByTurning_Sandeep_AVE_Chrimson_10ulRet');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20211118_RunFullWormRails_Sandeep_AVE_Chrimson_10ulRet');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20201110_RunRailsTriggeredByTurning_Sandeep_QW1097_10ulRet_blue');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20201110_RunFullWormRails_Sandeep_QW1097_10ulRet_blue');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20200904_RunRailsTriggeredByTurning_Sandeep_QW910_RIM_10ulRet');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20200904_RunFullWormRails_Sandeep_QW910_RIM_10ulRet');
-main_folder=('/projects/LEIFER/Sandeep/APIData/20210114_RunRailsTriggeredByTurning_Sandeep_TQ3301_10ulRet_blue');
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20210114_RunFullWormRails_Sandeep_TQ3301_10ulRet_blue');
-
-%%%% for figure 3
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220222_RunStimulateReversingWorms_Sandeep_AML496_lim4ACR2_10ulRet_blue');
-
-%%%% for figure 4a
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220117_RunFullWormRails_Sandeep_AML499_lim4ACR2_mec4Chrimson_10ulRet_red'); %% open loop AML499 red
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220120_RunRailsTriggeredByTurning_Sandeep_AML499_lim4ACR2_mec4Chrimson_10ulRet_red'); %% closed loop AML499 red
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220117_RunRailsTriggeredByTurningTwoColors_Sandeep_AML499_lim4ACR2_mec4Chrimson_10ulRet_purple'); %% closed loop AML499 purple
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220110_RunRailsTriggeredByTurning_Sandeep_AML499_lim4ACR2_mec4Chrimson_10ulRet_blue'); %% closed loop AML499 blue
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220210_RunRailsTriggeredByTurningTwoColors_Sandeep_AML499_lim4ACR2_mec4Chrimson_10ulRet_purple'); %% closed loop AML499 control expt
-
-%%%% for figure 4b
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220218_RunFullWormRails_Sandeep_AML67_10ulRet_red'); %% open loop AML67 red
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220215_RunRailsTriggeredByTurning_Sandeep_AML67_10ulRet_red'); %% closed loop AML67 red
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220215_RunRailsTriggeredByTurningTwoColors_Sandeep_AML67_10ulRet_purple'); %% closed loop AML67 purple
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220215_RunRailsTriggeredByTurning_Sandeep_AML67_10ulRet_blue'); %% closed loop AML67 blue
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220215_RunRailsTriggeredByTurningTwoColors_Sandeep_AML67_10ulRet_purple'); %% closed loop AML67 control
-
-%%%% for figure 4c
-% % main_folder=('/projects/LEIFER/Sandeep/APIData/20220210_RunRailsTriggeredByTurning_Sandeep_AML496_lim4ACR2_10ulRet_blue'); %% closed loop AML496 blue
-% % % % main_folder=('/projects/LEIFER/Sandeep/APIData/20220210_RunRailsTriggeredByTurning_Sandeep_AML496_lim4ACR2_10ulRet_blue'); %% closed loop AML496 blue control
- 
-cd(main_folder)
-
 %%%%% master input from the user
-stim_threshold_min=0.01;    %%%% min stim power 
-stim_threshold_max=10;   %%%% max stim power
-ellipse_ratio_threshold=3.1;  %%% use 3.6 as default value
-negative_vel_threshold=-0.11;
 random_seed_velocity_heatmap=1;
 behavior_sort_threshold=3; %% 1=for, 2=turn, 3=rev
 behavior_comparision_mode=2; %% 1:<=, 2:==, 3: >=
 velocity_sort_threshold=0;
 velocity_comparision_mode=1; %% 1:<=, 2:==, 3: >=
 analysis_new_data=1;
-analysis_workspace_data=11;
-
-%%%%%%%%%%%%%%%%%%
-if analysis_workspace_data==1
-%    load('/projects/LEIFER/Sandeep/Publications/Kumar_etal_2022/workspace_datasets/workspace_data_AML67_20200902_stim_on_turns.mat') 
-    load('/projects/LEIFER/Sandeep/Publications/Kumar_etal_2022/workspace_datasets/workspace_data_AML67_20200902_stim_on_fwd.mat') 
-    analysis_new_data=11;
-    analysis_workspace_data=1;
-end
 
 %%%%%%% user input parameters %%%%%%
-test_stimulus_duration=3; %%% if you want to test a specific stim duration
+test_stimulus_duration=10; %%% if you want to test a specific stim duration
+stim_threshold_min=0.01; %%%% min stim power 
+stim_threshold_max=10;   %%%% max stim power
 plotting_graphs=1;       %% to avoid plotting graphs
 save_mat_file=11;          %%%% to save the .mat file
 plot_all_beh_ratios=1;
@@ -83,18 +23,16 @@ plot_behavior_heatmaps=11;
 plot_velocity_traces=11;
 plot_ellipse_ratio_traces=11;
 plot_fwd_to_turn_heatmaps=11;
-plot_shaded_ellipse_ratio_traces=11;
 plot_reverse_to_turn_heatmaps=11;
-count_prob_reversal=1;
 number_of_rastors=30;
 plot_velocity_heatmaps=11;
 plot_ellipse_ratio_heatmaps=11;
 random_seed_open_loop_heatmap=14; %%% use 22 for open loop
-random_seed_closed_loop_heatmap=41;
+random_seed_closed_loop_heatmap=39;
 random_seed_reverse_to_turn_heatmap=3;
 random_seed_forward_to_turn_heatmap=15;
 
-excel_filename = 'AKS_483.7.e_20210723_175546_turns_20uW_3sec.csv';
+excel_filename = 'filename.csv';
 
 %%%%%%% optional parameters to help with debugging
 plot_head_tail_switch_instances=11;
@@ -111,17 +49,19 @@ else
 end
 
 %%%%%%%%%%%%%%%%% Input parameters %%%%%%%%%%%%%%%%
-behavior_to_study=2;  %%%  2= turn, 3=reverse 
+behavior_to_study=3;  %%%  2= turn, 3=reverse 
 two_stim_delivered=11; %%% when both blue and red stim are delivered simultaneously
 opto_stim_color=3; %%% red=1, green=2, blue=3
 
 max_allowed_stim_duration_diff=10; %%% this parameter is used for sorting stim of diff widths   
-minimum_length_of_worm=0.55;  %%%% 0.55 was used as default previously
+minimum_length_of_worm=0.55;  %%%% 
+ellipse_ratio_threshold=3.1;  %%% use 3.6 as default value
+negative_vel_threshold=-0.11;
 frames_in_reversal_threshold=1; %%%% this is the time for which worms must reverse
 test_low_ellipse_ratio_worm_threshold=3.9; %%% if the mean ellipse ratio of certian frames below this threshold then that trial is ignored
 additional_seconds_for_visualization=2;   %%% In case you want to visualize data for longer than stim duration. Keep it default to 0
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if contains(main_folder, 'Full')
     testtype='rails';
     analysis_rails=1;
@@ -155,7 +95,6 @@ if contains(main_folder,'TwoColors')
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 if analysis_new_data==1
 %%% ask for folders
 load('reference_embedding.mat')
@@ -166,8 +105,6 @@ relevant_track_fields = {'BehavioralTransition','Frames','AlignedStimulus','Elli
 
 %%%% select folders
 folders = getfoldersGUI();
-% % % load('/projects/LEIFER/Sandeep/Publications/Liu_etal_2021/reviewer_comments/tracking_frame_rate/all_open_loop/folders.mat')
-
 parameters = load_parameters(folders{end}); % load parameters for the first folder
 
 %%
@@ -181,12 +118,9 @@ rails_durations=sort(rails_durations);
 rails_durations=unique(rails_durations);  %%% in case, in th elabview program same time was entered twice
 
 index_durations=find(rails_durations==test_stimulus_duration);
-% for rails_dur=index_durations   %%% to debug or analyze particular stim duration
+for rails_dur=index_durations   %%% to debug or analyze particular stim duration
 
-sky=1;
-ellipse_ratio_threshold_array=[];
-% % % % for ellipse_ratio_threshold=[3.6] %%% [3.0:0.1:3.6]
-for rails_dur=index_durations %%% for analyzing all the stim durations
+% for rails_dur=1:size(rails_durations,2) %%% for analyzing all the stim durations
 
 rails_dur_itr=rails_durations(1,rails_dur);
 current_rails_dur=rails_dur_itr*parameters.SampleRate;
@@ -220,7 +154,6 @@ count_number_of_reversal_folder_rails=[];
 beh_state_on_stim_folder_new_protocol=[];  %%%% to find the turns on stim onset
 ellipse_ratio_during_turn_state_folder=[];
 just_the_ellipse_ratio_worm_data_folder=[];
-possible_head_tail_switch_folder=[];
 all_ellipse_ratio_folder=[];
 cumulative_recording_duration_folder=0; %% cumulative reconding length
 trial_count_folder=0;       %% to count the number of worm tracks in an assay
@@ -233,15 +166,8 @@ fraction_occupancy_folder_rails=[];
 behavior_on_additional_window_folder=[];
 velocity_on_additional_window_folder=[];
 ellipse_ratio_on_additional_window_folder=[];
-matrix_with_velocity_info_turns_folder=[];
-matrix_with_ellipse_ratio_info_turns_folder=[];
 
 for folder_index = [1:length(folders)]
-
-% % % %     specific_folders_of_interest = [1:3];
-% % % %     if ~ismember(folder_index,specific_folders_of_interest)
-% % % %         continue
-% % % %     end
 
     %%%% let us load the parameter file for each folder to determine the worm length threshold
     parameters_length = load_parameters(folders{folder_index});
@@ -275,7 +201,6 @@ for folder_index = [1:length(folders)]
     ellipse_ratio_at_stim_on_rails_trial=[];
     count_number_of_reversal_trial_rails=[];
     just_the_ellipse_ratio_worm_data_trial=[];
-    possible_head_tail_switch_trial=[];
 
     beh_state_on_stim_trial_new_protocol=[];  %%%% to find the turns on stim onset
     ellipse_ratio_during_turn_state_trial=[];
@@ -294,15 +219,9 @@ for folder_index = [1:length(folders)]
     behavior_on_additional_window_trial=[];
     velocity_on_additional_window_trial=[];
     ellipse_ratio_on_additional_window_trial=[];
-    matrix_with_velocity_info_turns_trial=[];
-    matrix_with_ellipse_ratio_info_turns_trial=[];
     
     for track_index = 1:length(current_tracks)
-% % %     for track_index=[124   208   229   405   484]
-%         track_index
-%     for track_index=[30 183 236 266 268 327 341 493 505 514 517 552]
-%     for track_index = [60 91 183 236 292 327 341 414 415 416 420 426 484] %%%% [60 91 183 236 283 292]  %% for debugging
-%     for track_index=590
+
         %%%% calculating cumulative recording duration and num of trials for each trial
         cumulative_recording_duration_trial=cumulative_recording_duration_trial+size(current_tracks(track_index).Frames,1);
         trial_count_trial=size(current_tracks,2);
@@ -322,11 +241,6 @@ for folder_index = [1:length(folders)]
         end
             
         mid_cline_index=size(current_tracks(track_index).AlignedStimulus,2)/2;
-        
-% % % %         %%%% if the stim is blue then multiply stim by -1closestIndex
-% % % %         if min(min(current_tracks(track_index).AlignedStimulus))<0
-% % % %             current_tracks(track_index).AlignedStimulus(:,:)=-1*current_tracks(track_index).AlignedStimulus(:,:); 
-% % % %         end
 
         %%%% Whenever the stimulus is negative, make it positive
         for pp=1:size(current_tracks(track_index).AlignedStimulus,1)
@@ -388,7 +302,7 @@ for folder_index = [1:length(folders)]
         
         corrected_data_for_missing_behaviors=original_data_pre_correction;
         for xx=[data_unassigned_pre_correction]
-            if smooth_velocity_for_correction(1,xx)<=-0.06
+            if smooth_velocity_for_correction(1,xx)<=0   %%%% -0.06
                 corrected_data_for_missing_behaviors(1,xx)=3;   %%% assigning reversal
             else
                 corrected_data_for_missing_behaviors(1,xx)=1;   %%% assigning forward
@@ -397,9 +311,7 @@ for folder_index = [1:length(folders)]
         
         current_tracks(track_index).BehavioralAnnotation=corrected_data_for_missing_behaviors;  %%%% we are reassigning behavior index for missing frames
         corrected_data_matrix_for_missing_behaviors{track_index,:}=corrected_data_for_missing_behaviors;
-        
-        %%% this is answer reviewer question on how reliable was the 10 s duration to detect head
-        %%% I am finding the amount of time spent in reversal
+
         
         [~,~,width_vel,~]=findpeaks(double(smooth_velocity_for_correction<-0.06));
         dummy_width_vel=[];
@@ -408,6 +320,7 @@ for folder_index = [1:length(folders)]
             dummy_width_vel(xyz,2)=width_vel(1,xyz);
         end
         width_vel_trial=[width_vel_trial; dummy_width_vel];
+        
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         original_stim=current_tracks(track_index).AlignedStimulus(:,mid_cline_index);
         [raw_stim_peaks_amplitude, raw_stim_peaks_locs,raw_stim_widths,~] = findpeaks(current_tracks(track_index).AlignedStimulus(:,mid_cline_index), 'MinPeakDistance',current_param.InterTriggerInterval);
@@ -439,10 +352,12 @@ for folder_index = [1:length(folders)]
         
         %%%then filter valid stims further and impose that they fall in this
         %%%temporal window tied to the ellipsoid ratio crossing event
-        valid_stim = intersect(stims_delivered_during_mochis_turns,er_turn_onset_zones_indices);
+% % % %         valid_stim = intersect(stims_delivered_during_mochis_turns,er_turn_onset_zones_indices);
+        valid_stim = stims_delivered_during_mochis_turns;
         valid_stim_matrix{track_index,:}=valid_stim;
         
-        final_valid_stim=find_stim_on_turn_onsets(stims_delivered_during_mochis_turns,er_turn_onset_indices);
+% % % %         final_valid_stim=find_stim_on_turn_onsets(stims_delivered_during_mochis_turns,er_turn_onset_indices);
+        final_valid_stim=stims_delivered_during_mochis_turns;
         final_valid_stim_matrix{track_index,:}=final_valid_stim;
     
         for mn=1:size(stim_onsets,1)
@@ -533,7 +448,7 @@ for folder_index = [1:length(folders)]
         final_array_of_stim_while_turning_peaks=[];    %%%% collecting just the final stim instances which goes through the analysis pipeline. It is for visualization code
         for i=1:length(stim_while_turning_peaks)
             
-% % % %             sprintf('current_track_index: %d and stim_at_peaks: %d',track_index,stim_while_turning_peaks(i))
+            %%%% sprintf('current_track_index: %d and stim_at_peaks: %d',track_index,stim_while_turning_peaks(i))
             
             %%% Noting down all the stim while turning peaks array
             dummy_stim_on_valid_turns(:,1)=folder_index;
@@ -545,13 +460,13 @@ for folder_index = [1:length(folders)]
                         
             %%% to avoid error due to 'findpeaks' function when the array begins with peak
             if any(stim_while_turning_peaks(i)<10)
-                %%%% disp('Error 10: Stim on turn peaks within 10 frames')
+                %%% disp('Error 10: Stim on turn peaks within 10 frames')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=[];
                 dummy_error_code(:,4)=9; %% error code is 9 when worm track begins with stim
                 error_code_trial=[error_code_trial
-                    dummy_error_code]; 
+                    dummy_error_code];  
                 continue
             end
         
@@ -577,6 +492,7 @@ for folder_index = [1:length(folders)]
                 
             dummy_array_with_velocity_info_turns=[];
             dummy_array_with_ellipse_ratio_info_turns=[];
+            dummy_array_with_ellipse_ratio_info_turns=[];
             locs_er=[];
             time_spend_in_turns=[];
             
@@ -589,7 +505,7 @@ for folder_index = [1:length(folders)]
                 dummy_array_with_velocity_info_turns];
             
             if max(dummy_array_with_velocity_info_turns(1:400,:))<=0.01 && min(dummy_array_with_velocity_info_turns(1:400,:))>=-0.01  %%%% ignore trials when worms hardly moved
-                %%%% disp('Worm is not moving: Trial ignored')
+                %%% disp('Worm is not moving: Trial ignored')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=stim_while_turning_peaks(i);
@@ -606,7 +522,7 @@ for folder_index = [1:length(folders)]
             
             %%%%%%%%%% to get rid of trials when two worms collide
             if any(dummy_array_with_ellipse_ratio_info_turns>8)
-                %%%% disp('worms collided during trial')
+                %%% disp('worms collided during trial')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=stim_while_turning_peaks(i);
@@ -622,7 +538,7 @@ for folder_index = [1:length(folders)]
             test_low_ellipse_ratio_worm = dummy_array_with_ellipse_ratio_info_turns(randIdcs_turns,:);
 
             if mean(test_low_ellipse_ratio_worm)<test_low_ellipse_ratio_worm_threshold
-                %%%% disp('Worm with low mean ellipse ratio')
+                %%% disp('Worm with low mean ellipse ratio')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=stim_while_turning_peaks(i);
@@ -635,35 +551,12 @@ for folder_index = [1:length(folders)]
             ellipse_ratio_at_stim_while_turning_trial=[ellipse_ratio_at_stim_while_turning_trial
                 dummy_array_with_ellipse_ratio_info_turns];
             
-            %%% make sure that stim is delivered during turns and not reversals 
-            if any(dummy_array_with_velocity_info_turns(495:500,:)<(negative_vel_threshold/2))
-                %%%% disp('Stim while reversal: trial ignored')
-                dummy_error_code(:,1)=folder_index;
-                dummy_error_code(:,2)=track_index;
-                dummy_error_code(:,3)=stim_while_turning_peaks(i);
-                dummy_error_code(:,4)=7;
-                error_code_trial=[error_code_trial
-                dummy_error_code];    %%% error code when stim delivered to reversing worms =7
-                continue
-            end
-            
-            %%% detecting head-tail switch
-            current_mean_angles=current_tracks(track_index).MeanAngle(:,(stim_while_turning_peaks(i)-1):(stim_while_turning_peaks(i)+current_rails_dur));
-            centerlines_data=current_tracks(track_index).Centerlines(:,:,(stim_while_turning_peaks(i)-1:(stim_while_turning_peaks(i)+current_rails_dur)));
-            
-            [possible_head_tail_switch_track,pks_euc_dis_track,pks_mean_angle_track,pks_curvature_track]=detect_head_tail_switch_3(current_mean_angles, centerlines_data,stim_while_turning_peaks(i),current_rails_dur,folder_index,track_index,plot_head_tail_switch_instances);
-            possible_head_tail_switch_trial=[possible_head_tail_switch_trial; possible_head_tail_switch_track];
-            
-            pks_euc_dis_trial=[pks_euc_dis_trial pks_euc_dis_track'];
-            pks_mean_angle_trial=[pks_mean_angle_trial pks_mean_angle_track];
-            pks_curvature_trial=[pks_curvature_trial pks_curvature_track];
-            
             %%%%%% to detect if the worm keeps on reversing for a longer time pre-stimulus
             data_reverse_correction_turns=current_tracks(track_index).BehavioralAnnotation(:,stim_while_turning_peaks(i)-500:stim_while_turning_peaks(i)-100); %%%% when worm is reversing
 
             [~, reverse_locs_correction_turns,reverse_widths_correction_turns,~] = findpeaks(data_reverse_correction_turns,'MinPeakHeight',2.5);
             if any(reverse_widths_correction_turns>210) 
-                %%%% disp('Head tail switch pre stimulus')
+                %%% disp('Head tail switch pre stimulus')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=stim_while_turning_peaks(i);
@@ -674,9 +567,14 @@ for folder_index = [1:length(folders)]
             end
             
             %%%%% to generate a plot for fraction occpancy during turns
-            fraction_occupancy_dummy_turns=current_tracks(track_index).BehavioralAnnotation(1,stim_while_turning_peaks(i)-time_window_before:stim_while_turning_peaks(i)+current_rails_dur);   
+            fraction_occupancy_dummy_turns_labels(:,1)=folder_index;
+            fraction_occupancy_dummy_turns_labels(:,2)=track_index;
+            fraction_occupancy_dummy_turns_labels(:,3)=stim_while_turning_peaks(i);
+            fraction_occupancy_dummy_turns=current_tracks(track_index).BehavioralAnnotation(1,stim_while_turning_peaks(i)-time_window_before:stim_while_turning_peaks(i)+time_window_after);   
+            fraction_occupancy_dummy_turns_with_labels=[fraction_occupancy_dummy_turns_labels fraction_occupancy_dummy_turns];
+            
             fraction_occupancy_trial_turns=[fraction_occupancy_trial_turns
-                fraction_occupancy_dummy_turns];
+                fraction_occupancy_dummy_turns_with_labels];
             
             %%%% collecting all the valid peaks for visualization
             final_array_of_stim_while_turning_peaks=[final_array_of_stim_while_turning_peaks
@@ -684,9 +582,7 @@ for folder_index = [1:length(folders)]
             
             %%%%%% detecting reversals in the stimulus window 
             indices_below_set_vel_threshold_turns = find(dummy_array_with_velocity_info_turns(vel_xlim_turns_1:vel_xlim_turns_2,:) < negative_vel_threshold); 
-            matrix_with_velocity_info_turns_trial=[matrix_with_velocity_info_turns_trial;dummy_array_with_velocity_info_turns(201:end)'];
-            matrix_with_ellipse_ratio_info_turns_trial=[matrix_with_ellipse_ratio_info_turns_trial;dummy_array_with_ellipse_ratio_info_turns(201:end)'];
-            
+
             if size(indices_below_set_vel_threshold_turns,1)>=frames_in_reversal_threshold 
                 dummy_array_with_number_of_reversal_turns(:,1)=folder_index;
                 dummy_array_with_number_of_reversal_turns(:,2)=track_index;
@@ -729,7 +625,7 @@ for folder_index = [1:length(folders)]
             
             for ab=1:length(stim_peaks)
             
-% % % %             sprintf('current_track_index: %d and stim_at_peaks: %d',track_index,stim_peaks(ab))
+            %%% sprintf('current_track_index: %d and stim_at_peaks: %d',track_index,stim_peaks(ab))
             
             %%% Noting down all the stim on rails
             dummy_stim_on_rails(:,1)=folder_index;
@@ -740,7 +636,7 @@ for folder_index = [1:length(folders)]
                 dummy_stim_on_rails];
             
             if stim_peaks(ab)<=500
-                %%%% disp('Stim in the first 500 frames: trial ignored')
+                %%% disp('Stim in the first 500 frames: trial ignored')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=stim_peaks(ab);
@@ -759,23 +655,15 @@ for folder_index = [1:length(folders)]
                 dummy_error_code];  
                 continue
             end
-             
+               
             dummy_array_with_velocity_info_rails=[];
             
             stim_on_rails_peaks_array(track_index,ab)=stim_peaks(ab);
-            
-% % % % %             %%%%%% this portion is only to answer reviewer comments.
-% % % % %             if stim_peaks(ab)+450>size(current_tracks(track_index).Frames,1)
-% % % % %                 continue
-% % % % %             end
-            %%% i am making an array of velocity for 15 seconds  post stim dur. Originally
-            %%% i made an array only for stim dur
-% % % %             dummy_array_with_velocity_info_rails=current_tracks(track_index).Velocity((stim_peaks(ab)-500):(stim_peaks(ab)+450),1);
-            
-            dummy_array_with_velocity_info_rails=current_tracks(track_index).Velocity((stim_peaks(ab)-500):(stim_peaks(ab)+current_rails_dur),1);
+
+            dummy_array_with_velocity_info_rails=current_tracks(track_index).Velocity((stim_peaks(ab)-500):(stim_peaks(ab)+450),1);
             
             if max(dummy_array_with_velocity_info_rails(1:400,:))<=0.01 && min(dummy_array_with_velocity_info_rails(1:400,:))>=-0.01  %%%% ignore trials when worms hardly moved
-                %%%% disp('Worm is not moving: Trial ignored')
+                %%% disp('Worm is not moving: Trial ignored')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=stim_peaks(ab);
@@ -792,7 +680,7 @@ for folder_index = [1:length(folders)]
             
             %%%%%%%%%% to get rid of trials when two worms collide
             if any(dummy_array_with_ellipse_ratio_info_rails>8)
-                %%%% disp('worms collided during trial')
+                %%% disp('worms collided during trial')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=stim_peaks(ab);
@@ -808,7 +696,7 @@ for folder_index = [1:length(folders)]
             test_low_ellipse_ratio_worm_rails = dummy_array_with_ellipse_ratio_info_rails(randIdcs_rails,:);
                      
             if mean(test_low_ellipse_ratio_worm_rails)<test_low_ellipse_ratio_worm_threshold
-                %%%% disp('Worm with low mean ellipse ratio')
+                %%% disp('Worm with low mean ellipse ratio')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=stim_peaks(ab);
@@ -823,7 +711,7 @@ for folder_index = [1:length(folders)]
             
             %%% make sure that stim is delivereed during forward motion and not reversals
             if any(dummy_array_with_velocity_info_rails(495:500,:)<negative_vel_threshold/2)
-                %%%% disp('Stim while reversal: trial ignored')
+                %%% disp('Stim while reversal: trial ignored')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=stim_peaks(ab);
@@ -835,7 +723,7 @@ for folder_index = [1:length(folders)]
             
             %%% make sure that stim is delivered during forward motion and not turns
             if any(dummy_array_with_ellipse_ratio_info_rails(490:500,:)<=ellipse_ratio_threshold)
-                %%%% disp('Stim on turn: trial ignored')
+                %%% disp('Stim on turn: trial ignored')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=stim_peaks(ab);
@@ -851,7 +739,7 @@ for folder_index = [1:length(folders)]
             [~, reverse_locs_correction_rails,reverse_widths_correction_rails,~] = findpeaks(data_reverse_correction_rails);
 
             if any(reverse_widths_correction_rails>210) 
-                %%%% disp('Head tail switch pre stimulus')
+                %%% disp('Head tail switch pre stimulus')
                 dummy_error_code(:,1)=folder_index;
                 dummy_error_code(:,2)=track_index;
                 dummy_error_code(:,3)=stim_peaks(ab);
@@ -861,10 +749,10 @@ for folder_index = [1:length(folders)]
                 continue 
             end
             
-% % % % %             %%%%% to generate a plot for fraction occpancy during turns
-% % % % % % %             fraction_occupancy_dummy_rails=current_tracks(track_index).BehavioralAnnotation(1,stim_peaks(ab)-time_window_before:stim_peaks(ab)+time_window_after);   
-% % % % % % %             fraction_occupancy_trial_rails=[fraction_occupancy_trial_rails
-% % % % % % %                 fraction_occupancy_dummy_rails];
+            %%%%% to generate a plot for fraction occpancy during turns
+            fraction_occupancy_dummy_rails=current_tracks(track_index).BehavioralAnnotation(1,stim_peaks(ab)-time_window_before:stim_peaks(ab)+time_window_after);   
+            fraction_occupancy_trial_rails=[fraction_occupancy_trial_rails
+                fraction_occupancy_dummy_rails];
             
             %%%%% collecting all the stim peaks for visualization plots
             final_array_of_stim_on_rails_peaks=[final_array_of_stim_on_rails_peaks
@@ -901,7 +789,7 @@ for folder_index = [1:length(folders)]
             %%% when no reversal is detected
             if isempty(indices_below_set_vel_threshold_rails)
 
-                %%%% disp('No reversal detected')
+                %%% disp('No reversal detected')
                 dummy_array_with_number_of_reversal_rails(:,1)=folder_index;
                 dummy_array_with_number_of_reversal_rails(:,2)=track_index;
                 dummy_array_with_number_of_reversal_rails(:,3)=stim_peaks(ab);
@@ -1002,7 +890,9 @@ for folder_index = [1:length(folders)]
     
     count_number_of_reversal_folder_turns=[count_number_of_reversal_folder_turns
         count_number_of_reversal_trial_turns];
-       
+    
+    test=[test; size(count_number_of_reversal_trial_turns,1)];
+    
     count_number_of_reversal_folder_rails=[count_number_of_reversal_folder_rails
     count_number_of_reversal_trial_rails];
 
@@ -1011,9 +901,6 @@ for folder_index = [1:length(folders)]
     
     stim_on_rails_peaks_array_folder=[stim_on_rails_peaks_array_folder
     stim_on_rails_peaks_array_trial];
-    
-    possible_head_tail_switch_folder=[possible_head_tail_switch_folder
-        possible_head_tail_switch_trial];
     
     beh_state_on_stim_folder_new_protocol=[beh_state_on_stim_folder_new_protocol
         beh_state_on_stim_trial_new_protocol];
@@ -1033,8 +920,8 @@ for folder_index = [1:length(folders)]
     fraction_occupancy_folder_turns=[fraction_occupancy_folder_turns
         fraction_occupancy_trial_turns];
     
-% % %     fraction_occupancy_folder_rails=[fraction_occupancy_folder_rails
-% % %         fraction_occupancy_trial_rails];
+    fraction_occupancy_folder_rails=[fraction_occupancy_folder_rails
+        fraction_occupancy_trial_rails];
     
       behavior_on_additional_window_folder=[behavior_on_additional_window_folder
            behavior_on_additional_window_trial];
@@ -1042,22 +929,11 @@ for folder_index = [1:length(folders)]
            velocity_on_additional_window_trial];
       ellipse_ratio_on_additional_window_folder=[ellipse_ratio_on_additional_window_folder
            ellipse_ratio_on_additional_window_trial];
-       
-       matrix_with_velocity_info_turns_folder=[matrix_with_velocity_info_turns_folder
-           matrix_with_velocity_info_turns_trial];
-       
-       matrix_with_ellipse_ratio_info_turns_folder=[matrix_with_ellipse_ratio_info_turns_folder
-           matrix_with_ellipse_ratio_info_turns_trial];
     
     cumulative_recording_duration_folder=cumulative_recording_duration_folder+cumulative_recording_duration_trial;
     trial_count_folder=trial_count_folder+trial_count_trial;
 
 end
-
-% % % %     count_number_of_reversal_folder_turns_array{:,sky}=count_number_of_reversal_folder_turns;
-% % % %     count_number_of_reversal_folder_rails_array{:,sky}=count_number_of_reversal_folder_rails;
-% % % %     ellipse_ratio_threshold_array(:,sky)=ellipse_ratio_threshold;
-% % % %     sky=sky+1
 
 if plotting_graphs==1 %%% to prevent graphs and corresponding calculations
 %%%%%% 
@@ -1116,7 +992,7 @@ for stimulus_index = 1:n_sti
 %     set(get(get(tap_line,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
     axis([-time_window_before/fps time_window_after/fps 0 1])
     box off;
-%     ylim([0 0.4])
+%     ylim([0 0.3])
     end
 %     axis([-time_window_before/fps time_window_after/fps 0 1])
 end
@@ -1151,7 +1027,7 @@ for behavior_index = [1,2,3] %fast forward3; fast reverse; turns
 %     ylim([0 0.3])
 %     yticks([0:0.1:0.3])
     xlim([-time_window_before/fps time_window_after/fps])
-    xticks([-10:2:5])
+    xticks([-10:5:12])
     alpha(0.2)
     box off;
     grid off;
@@ -1203,10 +1079,8 @@ end
 end  %%% this will prevent plotting any graphs and the corresponding calculations
 end
 
-% % % % end
-
 %%
-if plot_comparison_reverse_beh==1 && plotting_graphs==1 
+if plot_comparison_reverse_beh==1
     
 my_colors = lines(size(rails_durations,2));
 figure;
@@ -1261,16 +1135,14 @@ if save_mat_file==1
     writematrix(count_number_of_reversal_folder_turns,excel_filename);
     end  
 end
-end
 
 %%
-if analysis_workspace_data==1 || analysis_new_data==1
 %%%%% coming up with a way, so that I can use my behavior annotation
 for ijk=1:size(all_behavior_annotations_for_frame,2)
     for mn=1:size(all_behavior_annotations_for_frame{1,ijk},2)
         for pq=1:size(all_behavior_annotations_for_frame{1,ijk}{1,mn},2)
             sk_behavior_annotations_for_frame{1,ijk}{1,mn}(1,pq)=1; 
-            if all_velocity_annotations_for_frame{1,ijk}{1,mn}(1,pq)<-0.1
+            if all_velocity_annotations_for_frame{1,ijk}{1,mn}(1,pq)<0
                 sk_behavior_annotations_for_frame{1,ijk}{1,mn}(1,pq)=3;
             end 
             
@@ -1303,19 +1175,22 @@ if plot_behavior_heatmaps==1 && plotting_graphs==1
     f = figure;
     f.Position = [100 300 1140 520];
  
-    for ij=1:3
+    for ij=1:size(stimulus_intensities,2)
 
-        h3=subplot(1,3,ij);
-%         %%% skipping plotting for 40uW
-%         if ij==2
-%             ij=3;
-%         end
+        h3=subplot(1,size(stimulus_intensities,2),ij);
+% % % %         %%% skipping plotting for 40uW
+% % % %         if ij==2
+% % % %             ij=3;
+% % % %         end
         
         hAxes = gca;
         clims = [0 3.0001];
-        dummy_data_for_heatmap=all_behavior_annotations_for_frame{1,ij}(:,round(total_window_for_visualization/2):end);
-        behavior_data_for_heatmap=cell2mat(reshape(dummy_data_for_heatmap,[total_window_for_visualization,1]));
+        dummy_data_for_heatmap=all_behavior_annotations_for_frame{1,ij}(:,1:(2*current_rails_dur)+1);
+        behavior_data_for_heatmap=cell2mat(reshape(dummy_data_for_heatmap,[(2*current_rails_dur+1),1]));
         behavior_data_for_heatmap=behavior_data_for_heatmap';
+        behavior_data_for_heatmap_cell{1,ij}=behavior_data_for_heatmap;
+        behavior_data_for_heatmap_cell{2,ij}=stimulus_intensities(1,ij);
+        
         if analysis_rails==1        
             rng(random_seed_open_loop_heatmap,'twister')
         else
@@ -1328,15 +1203,15 @@ if plot_behavior_heatmaps==1 && plotting_graphs==1
         imagesc(hAxes,data_to_be_plotted(sorted_idx,:),clims);
 %         imagesc(hAxes,data_to_be_plotted,clims);
         hold on;
-        xline(151,'--k','linewidth',1.0);
+        xline(round(size(data_to_be_plotted,2)/2),'--k','linewidth',1.0);
         hold on;
-        xline(241,'--k','linewidth',1.0);
+        xline(round(size(data_to_be_plotted,2)/2)+current_rails_dur,'--k','linewidth',1.0);
         colormap( hAxes , color_matrix)
         yticks([10:10:30])
         
-        xticks([1:floor(total_window_for_visualization/2):total_window_for_visualization])
+        xticks([1:(floor(size(data_to_be_plotted,2)/2)):size(data_to_be_plotted,2)])
         xt = get(gca, 'XTick');                                             % Original 'XTick' Values
-        xtlbl = linspace(-total_time_for_visualization, total_time_for_visualization, numel(xt));                     % New 'XTickLabel' Vector
+        xtlbl = linspace(-rails_dur_itr, rails_dur_itr, numel(xt));                     % New 'XTickLabel' Vector
         set(gca, 'XTick',xt, 'XTickLabel',xtlbl)   % Label Ticks
         
         xt = get(gca, 'XTick');                                             % Original 'XTick' Values
@@ -1371,18 +1246,18 @@ end
 if plot_velocity_traces==1 && plotting_graphs==1
     f = figure;
     f.Position = [100 300 1140 520];
-    time_axis=[(-1*total_time_for_visualization):1/fps:total_time_for_visualization];
+    time_axis=[(-1*rails_dur_itr):1/fps:rails_dur_itr];
     n_bins = 60;
     edges = linspace(-0.3,0.3,n_bins);
     velocity_density = zeros(numel(edges)-1, numel(time_axis));
-    for ij=1:3
-        h3=subplot(1,3,ij);
+    for ij=1:size(stimulus_intensities,2)
+        h3=subplot(1,size(stimulus_intensities,2),ij);
 % %         if ij==2
 % %             ij=3;
 % %         end
        
-       dummy_velocity_data_for_heatmap=all_velocity_annotations_for_frame{1,ij}(:,round(total_window_for_visualization/2):end);
-       behavior_data_for_heatmap=cell2mat(reshape(dummy_velocity_data_for_heatmap,[total_window_for_visualization,1]));
+       dummy_velocity_data_for_heatmap=all_velocity_annotations_for_frame{1,ij}(:,1:(2*current_rails_dur)+1);
+       behavior_data_for_heatmap=cell2mat(reshape(dummy_velocity_data_for_heatmap,[(2*current_rails_dur+1),1]));
        behavior_data_for_heatmap=behavior_data_for_heatmap';
        mean_velocity=mean(behavior_data_for_heatmap,1);  
        
@@ -1395,15 +1270,15 @@ if plot_velocity_traces==1 && plotting_graphs==1
        hold on;
        plot(time_axis,mean_velocity,'-k','LineWidth',2);
        hold on;
-       xline(0,'--k','linewidth',1);
+       xline(0,'--y','linewidth',1);
        hold on;
-       xline(3,'--k','linewidth',1);
+       xline(rails_dur_itr,'--y','linewidth',1);
        hold on;
        title([num2str(stimulus_intensities(ij)) '\muW/mm^2'])
        ylim([-0.3 0.3])
-       xlim([-total_time_for_visualization total_time_for_visualization])
+       xlim([-rails_dur_itr rails_dur_itr])
        yticks([-0.3:0.3:0.3])
-       xticks([-total_time_for_visualization:total_time_for_visualization:total_time_for_visualization])
+       xticks([-rails_dur_itr:rails_dur_itr:rails_dur_itr])
        ylabel('Velocity (mm/sec)')
        xlabel('Time (s)')
 % %        cb=colorbar;
@@ -1432,18 +1307,18 @@ end
 if plot_ellipse_ratio_traces==1 && plotting_graphs==1
     f = figure;
     f.Position = [100 300 1140 520];
-    time_axis=[(-1*total_time_for_visualization):1/fps:total_time_for_visualization];
+    time_axis=[(-1*rails_dur_itr):1/fps:rails_dur_itr];
     n_bins = 60;
     er_edges = linspace(1,7,n_bins);
     er_density = zeros(numel(er_edges)-1, numel(time_axis));
-    for ij=1:3
-        h3=subplot(1,3,ij);
+    for ij=1:size(stimulus_intensities,2)
+        h3=subplot(1,size(stimulus_intensities,2),ij);
 % % %         if ij==2
 % % %             ij=3;
 % % %         end
        
-       dummy_ellipse_ratio_data_for_heatmap=all_ellipse_ratio_annotations_for_frame{1,ij}(:,round(total_window_for_visualization/2):end);
-       ellipse_ratio_data_for_heatmap=cell2mat(reshape(dummy_ellipse_ratio_data_for_heatmap,[total_window_for_visualization,1]));
+       dummy_ellipse_ratio_data_for_heatmap=all_ellipse_ratio_annotations_for_frame{1,ij}(:,1:(2*current_rails_dur)+1);
+       ellipse_ratio_data_for_heatmap=cell2mat(reshape(dummy_ellipse_ratio_data_for_heatmap,[(2*current_rails_dur+1),1]));
        ellipse_ratio_data_for_heatmap=ellipse_ratio_data_for_heatmap';
        mean_ellipse_ratio=mean(ellipse_ratio_data_for_heatmap,1);  
 
@@ -1456,15 +1331,15 @@ if plot_ellipse_ratio_traces==1 && plotting_graphs==1
        hold on;
        plot(time_axis,mean_ellipse_ratio,'-k','LineWidth',2);
        hold on;
-       xline(0,'--k','linewidth',1);
+       xline(0,'--y','linewidth',1);
        hold on;
-       xline(3,'--k','linewidth',1);
+       xline(rails_dur_itr,'--y','linewidth',1);
        hold on;
 % %        title([num2str(stimulus_intensities(ij)) '\muW/mm^2'])
        ylim([1 7])
-       xlim([-total_time_for_visualization total_time_for_visualization])
+       xlim([-rails_dur_itr rails_dur_itr])
        yticks([2:2:6])
-       xticks([-total_time_for_visualization:total_time_for_visualization:total_time_for_visualization])
+       xticks([-rails_dur_itr:rails_dur_itr:rails_dur_itr])
        ylabel('Ellipse Ratio')
        xlabel('Time (s)')
 % %        cb=colorbar;
@@ -1495,9 +1370,9 @@ color_matrix=behavior_colors;
 color_matrix(1,:)=[1 1 1];
 f = figure;
 f.Position = [100 300 1140 520];
-for ij=1:3
+for ij=1:size(stimulus_intensities,2)
 
-    h3=subplot(1,3,ij);
+    h3=subplot(1,size(stimulus_intensities,2),ij);
 
 % % % %     %%% skipping plotting for 40uW
 % % % %     if ij==2
@@ -1506,8 +1381,8 @@ for ij=1:3
 
     hAxes = gca;
     clims = [0 3.001];
-    dummy_data_for_heatmap=all_behavior_annotations_for_frame{1,ij}(:,round(total_window_for_visualization/2):end);
-    behavior_data_for_heatmap=cell2mat(reshape(dummy_data_for_heatmap,[total_window_for_visualization,1]));
+    dummy_data_for_heatmap=all_behavior_annotations_for_frame{1,ij}(:,1:(2*current_rails_dur)+1);
+    behavior_data_for_heatmap=cell2mat(reshape(dummy_data_for_heatmap,[(2*current_rails_dur)+1,1]));
     behavior_data_for_heatmap=behavior_data_for_heatmap';
     
     fwd_to_turn_data=[];
@@ -1566,9 +1441,9 @@ color_matrix=behavior_colors;
 color_matrix(1,:)=[0.9 0.9 0.9];
 f = figure;
 f.Position = [100 300 1140 520]; %%%%[100 100 1140 520];
-for ij=1:3
+for ij=1:size(stimulus_intensities,2)
 
-    h3=subplot(1,3,ij);
+    h3=subplot(1,size(stimulus_intensities,2),ij);
 
 % % %     %%% skipping plotting for 40uW
 % % %     if ij==2
@@ -1577,8 +1452,8 @@ for ij=1:3
 
     hAxes = gca;
     clims = [0 3.001];
-    dummy_data_for_heatmap=all_behavior_annotations_for_frame{1,ij}(:,round(total_window_for_visualization/2):end);
-    behavior_data_for_heatmap=cell2mat(reshape(dummy_data_for_heatmap,[total_window_for_visualization,1]));
+    dummy_data_for_heatmap=all_behavior_annotations_for_frame{1,ij};
+    behavior_data_for_heatmap=cell2mat(reshape(dummy_data_for_heatmap,[size(dummy_data_for_heatmap,2),1]));
     behavior_data_for_heatmap=behavior_data_for_heatmap';
     
     reverse_to_turn_data=[];
@@ -1629,104 +1504,6 @@ for ij=1:3
 % %         set(h3, 'Position', originalSize2); 
     end
 end
-end
-
-%%
-%%%% plotting shaded ellipse ratio for 80uW 
-if plot_shaded_ellipse_ratio_traces==1 && plotting_graphs==1 && analysis_stim_while_turning==1
-
-    time_axis=[(-1*total_time_for_visualization):1/fps:total_time_for_visualization];
-    
-    dummy_ellipse_ratio_data_for_heatmap=all_ellipse_ratio_annotations_for_frame{1,3}(:,round(total_window_for_visualization/2):end);
-    ellipse_ratio_data_for_heatmap=cell2mat(reshape(dummy_ellipse_ratio_data_for_heatmap,[total_window_for_visualization,1]));
-    ellipse_ratio_data_for_heatmap=ellipse_ratio_data_for_heatmap';
-
-    mean_ellipse_ratio=mean(ellipse_ratio_data_for_heatmap,1);  
-    std_ellipse_ratio=std(ellipse_ratio_data_for_heatmap,0,1);
-
-    f = figure;
-    f.Position = [100 300 1140 520]; %%%[100 100 1140 520];
-
-    subplot(1,2,1)
-    light_pulse1 = area([-0.33 0], [8 8],'facecolor','k','LineStyle','none','DisplayName','test window');
-    alpha(0.1)
-    hold on
-    light_pulse2 = area([0 3], [8 8],'facecolor','r','LineStyle','none','DisplayName','opto stimlus');
-    alpha(0.1)
-    hold on
-    shaded_plot=shadedErrorBar(time_axis, mean_ellipse_ratio,std_ellipse_ratio,'b');
-    hold on
-    yline(3.6,'-m','linewidth',2,'DisplayName','E.R. threshold');
-    ylabel('Ellipse Ratio')
-    xlabel('Time (s)')
-    ax = gca; ax.FontSize = 18;
-    xlim([-2 2])
-    yticks([1 3 5 7])
-    xticks([-2 0 2])
-    ylim([1 8])
-    xlim([-2 2])
-    box off
-    set(get(get(shaded_plot.mainLine,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
-    set(get(get(shaded_plot.patch,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
-    legend ('location','northwest','fontsize',14)
-
-
-    subplot(1,2,2)
-    light_pulse1 = area([-0.33 0], [8 8],'facecolor','k','LineStyle','none','DisplayName','test window');
-    alpha(0.1)
-    hold on
-    light_pulse2 = area([0 3], [8 8],'facecolor','r','LineStyle','none','DisplayName','opto stimlus');
-    alpha(0.1)
-    hold on
-    plot(time_axis,ellipse_ratio_data_for_heatmap,'HandleVisibility','off');
-    hold on;
-    yline(3.6,'-m','linewidth',2,'DisplayName','E.R. threshold');
-    ax = gca; ax.FontSize = 20;
-    xlim([-2 2])
-%     yticks([1 3 5 7])
-%     xticks([-2 0 2])
-%     ylabel('Ellipse Ratio')
-%     xlabel('Time (s)')
-    set(gca,'ytick',[])
-    set(gca,'yticklabel',[])
-    set(gca,'ylabel',[])
-    set(gca,'xlabel',[])
-    ylim([1 8])
-    xlim([-2 2])
-    box off
-    set(get(get(shaded_plot.mainLine,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
-    set(get(get(shaded_plot.patch,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
-%     legend ('location','southwest')
-    
-end
-
-%% to count the probability of reversals
-if count_prob_reversal==1
-   for ij=1:size(all_velocity_annotations_for_frame,2)
-       
-% % %     %%% skipping plotting for 40uW
-% % %     if ij==2
-% % %         ij=3;
-% % %     end
-
-    dummy_data_to_count_prob_reversal=all_velocity_annotations_for_frame{1,ij}(:,round(total_window_for_visualization/2):end);
-    velocity_data_to_count_prob_reversal=cell2mat(reshape(dummy_data_to_count_prob_reversal,[total_window_for_visualization,1]));
-    velocity_data_to_count_prob_reversal=velocity_data_to_count_prob_reversal';
-
-    for uv=1:size(velocity_data_to_count_prob_reversal,1)
-        if any(velocity_data_to_count_prob_reversal(uv,round(size(velocity_data_to_count_prob_reversal,2)/2):(round(size(velocity_data_to_count_prob_reversal,2)/2)+current_rails_dur))<=negative_vel_threshold)
-            count_number_of_reversals_array{1,ij}(uv,1)=1;
-        else
-            count_number_of_reversals_array{1,ij}(uv,1)=0;
-        end
-    end
-    
-    [mean_data(:,ij),err_high(:,ij),err_low(:,ij)]=bootstrap_mean_and_ci(10000,0.05,count_number_of_reversals_array{1,ij})
-    
-   end 
-   
-   number_of_reversals_and_stim_intensity=[count_number_of_reversals_array; num2cell(stimulus_intensities)];
-   
 end
 
 end
